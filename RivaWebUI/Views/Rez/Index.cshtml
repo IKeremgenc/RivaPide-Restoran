@@ -1,0 +1,69 @@
+﻿@model CreateBookingDto
+
+
+<div class="modal fade" id="reservationModal" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bg-image" style="background-image: url(/eatwell-master/images/reservation_1.jpg);"></div>
+                    </div>
+                    <div class="col-lg-12 p-5">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <small>Kapat</small><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h1 class="mb-4 text-center">Yeriniz Ayırtın😊</h1>
+                        <form asp-action="Index" asp-controller="Rez" method="post">
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label for="m_fname">Adınız</label>
+                                    <input type="text" asp-for="Name" class="form-control" id="m_fname" required>
+                                    <span asp-validation-for="Name" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label for="m_email">Mail</label>
+                                    <input type="email" class="form-control" asp-for="Mail" id="Mail" required>
+                                    <span asp-validation-for="Mail" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label for="m_people">Kaç Kişi</label>
+                                    <select name="PersonCount" id="PersonCount" class="form-control" asp-for="PersonCount" required>
+                                        <option value="1">1 Kişi</option>
+                                        <option value="2">2 Kişi</option>
+                                        <option value="3">3 Kişi</option>
+                                        <option value="4">4 Kişi </option>
+                                        <option value="5+">5 Ve Üstü Kişi</option>
+                                    </select>
+                                
+                                </div>
+                                <div class="col-md-6 form-group">
+                                    <label for="Phone">Telefon</label>
+                                    <input type="text" class="form-control" asp-for="Phone" id="Phone" required>
+                                    <span asp-validation-for="Phone" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label for="Date">Tarih</label>
+                                    <input type="datetime-local" class="form-control" id="Date" asp-for="Date" required>
+                                    <span asp-validation-for="Date" class="text-danger"></span>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <input type="submit" class="btn btn-danger btn-lg btn-block" value="Yerimi Ayır" required>
+                                </div>
+                            </div>
+                        </form>
+              
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

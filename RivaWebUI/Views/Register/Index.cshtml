@@ -1,0 +1,64 @@
+﻿@model RegisterDto
+
+
+
+
+<div class="modal fade" id="reservationRegister" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-body">
+				<div class="row">
+					<div class="col-lg-12">
+						<div class="bg-image" style="background-image: url(/eatwell-master/images/reservation_1.jpg);"></div>
+					</div>
+					<div class="col-lg-12 p-5">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<small>Kapat</small><span aria-hidden="true">&times;</span>
+						</button>
+						<h1 class="mb-4 text-center">Kayıt Ol 😊</h1>
+						<form asp-action="Index" asp-controller="Register" method="post"> 
+					
+					
+
+							<div class="row">
+								<div class="col-md-12 form-group">
+									<label for="m_fname">Adınız</label>
+									<input type="text" asp-for="Name" class="form-control" id="Name" placeholder=" Adınız Girin" required>
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 form-group">
+									<label for="m_fname">SoyAdınız</label>
+									<input type="text" asp-for="Surname" class="form-control" id="Surname" placeholder="  Soyadınız" required>
+
+								</div>
+							</div>
+							<div class="row">
+								<div class="col-md-12 form-group">
+									<label for="m_fname">Mail</label>
+									<input type="email" asp-for="Mail" class="form-control" id="Mail" placeholder=" Mailinizi Girin" required pattern="[^@@]+@@[^@@]+.[a-zA-Z]{2,6}">
+
+								</div>
+							
+							</div>
+							<div class="row">
+								<div class="col-md-12 form-group">
+									<label for="m_fname">Şifreniz</label>
+									<input type="password" asp-for="Password" class="form-control" id="Mail" placeholder=" Şifrenizi Girin" required >
+
+								</div>
+
+							</div>
+
+
+							<button class="btn btn-dark">Giriş Yap</button>
+
+						</form>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

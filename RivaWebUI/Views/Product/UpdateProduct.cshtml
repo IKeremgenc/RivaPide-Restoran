@@ -1,0 +1,68 @@
+﻿@model UpdateProductDto
+
+@{
+    ViewData["Title"] = "UpdateProduct";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-header">
+    <h3 class="page-title">Ürün İşlemleri</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Product/Index/">Ürünler</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ürün Güncelle</li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" class="forms-sample" enctype="multipart/form-data">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Ürün Güncelleme Sayfası</div>
+                        </div>
+                        <input type="hidden" asp-for="ProductID" />
+                        <input type="hidden" asp-for="CategoryID" />
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="productname">Ürün Adını Giriniz</label>
+                                <input type="text" class="form-control" asp-for="ProductName" id="productname">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="price">Ürün Fiyatını Giriniz</label>
+                                <input type="number" step="any" class="form-control" asp-for="Price" id="price">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="NewImage">Yeni Resim Seç</label>
+                                <input type="file" class="form-control-file" id="NewImage" name="NewImage" onchange="showFileName()">
+                            </div>
+                        </div>
+                   
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="description">Ürün Açıklamasını Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Description" id="description">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <button type="submit" class="btn btn-primary">Ürünü Güncelle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showFileName() {
+        var input = document.getElementById('NewImage');
+        var output = document.getElementById('SelectedFileName');
+        output.textContent = input.files[0].name;
+    }
+</script>

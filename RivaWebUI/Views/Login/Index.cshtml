@@ -1,0 +1,47 @@
+﻿@model LoginDto
+
+<div class="modal fade" id="reservationLogin" tabindex="-1" role="dialog" aria-labelledby="reservationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="bg-image" style="background-image: url(/eatwell-master/images/reservation_1.jpg);"></div>
+                    </div>
+                    <div class="col-lg-12 p-5">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <small>Kapat</small><span aria-hidden="true">&times;</span>
+                        </button>
+                        <h1 class="mb-4 text-center">Giriş Yap 😊</h1>
+                        <form asp-action="Index" asp-controller="Login" method="post">
+                    
+                            
+                           
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label for="m_fname">Adınız</label>
+                                    <input type="text" asp-for="Username" class="form-control" id="Username" placeholder=" Adınız Girin" required>
+                             
+                                </div>
+                            </div>
+
+
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <label for="m_fname">Şifreni</label>
+                                    <input type="password" asp-for="Password" class="form-control" id="Password" placeholder=" Şifrenizi Girin" required>
+
+                                </div>
+                            </div>
+
+                                <button class="btn btn-dark">Giriş Yap</button>
+                            <a href="/ForgetPassword/ForgetPassword" class="text-dark font-weight-bold">Şifre Yenile</a>
+                       
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

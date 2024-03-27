@@ -1,0 +1,73 @@
+﻿@model UserEditDto
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-header">
+    <h3 class="page-title">Ayarlar Sayfası</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Ayarlar</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Ayarlar</li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form id="updateForm" method="post" asp-controller="Setting" asp-action="Index" class="forms-sample">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Şifre ve Bilgi Güncelleme Sayfası</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Name">Adınız</label>
+                                <input type="text" class="form-control" asp-for="Name" id="Name" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="Surname">Soyadınız</label>
+                                <input type="text" class="form-control" asp-for="Surname" id="Surname" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="Mail">Mail Adresiniz</label>
+                                <input type="email" class="form-control" asp-for="Mail" id="Mail" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="Username">Kullanıcı Adınız</label>
+                                <input type="text" class="form-control" asp-for="Username" id="Username" readonly>
+                            </div>
+                            <div class="form-group">
+                                <label for="Password">Şifreniz</label>
+                                <input type="password" class="form-control" asp-for="Password" id="Password">
+                            </div>
+                            <div class="form-group">
+                                <label for="ConfirmPassword">Şifrenizi Onaylayın</label>
+                                <input type="password" class="form-control" asp-for="ConfirmPassword" id="ConfirmPassword">
+                            </div>
+                            <div class="card-action">
+                                <button class="btn btn-success" id="updateButton">Bilgileri Güncelle</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    $(document).ready(function () {
+        $("#updateButton").click(function () {
+            Swal.fire({
+                title: 'Bilgiler güncellendi!',
+                icon: 'success',
+                showConfirmButton: false,
+                timer: 2000 
+            });
+        });
+    });
+</script>

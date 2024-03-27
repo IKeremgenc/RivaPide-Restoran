@@ -1,0 +1,66 @@
+﻿@model CreateDiscountDto
+
+@{
+    ViewData["Title"] = "CreateDiscount";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-header">
+    <h3 class="page-title">İnidirm İşlemleri </h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Discount/Index/">İndirimler</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> İndirim Oluştur  </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body" >
+                <form method="post" class="forms-sample" enctype="multipart/form-data">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni İndirimli Ürün Girişi</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">Ürün Adını Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Title" id="Title">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Amount">İndirimli Fiyatı Belirle</label>
+                                <input type="text" class="form-control" asp-for="Amount" id="Amount">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="NewImage">Yeni Resim Seç</label>
+                                <input type="file" class="form-control-file" id="NewImage" name="NewImage" onchange="showFileName()">
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Description">Ürün Açıklamasını Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Description" id="Description">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-primary">İndirimli Ürünü Ekle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showFileName() {
+        var input = document.getElementById('ImageUrl');
+        var output = document.getElementById('SelectedFileName');
+        output.textContent = input.files[0].name;
+    }
+</script>

@@ -1,0 +1,30 @@
+﻿
+@{
+    Layout = null;
+    
+}
+@* UI Layout*@
+ <!DOCTYPE html>
+<html>
+
+@await Component.InvokeAsync("_UIHeader")
+
+<body data-spy="scroll" data-target="#site-navbar" data-offset="200">
+
+    @await Component.InvokeAsync("_UINvBar")
+
+    <!-- book section -->
+  @RenderBody()
+    <!-- end book section -->
+    <!-- footer section -->    
+    @await Component.InvokeAsync("_UIFooter")
+
+    @await Component.InvokeAsync("_UIScript")
+
+    <!-- footer section -->
+    <!-- jQery -->
+   
+
+</body>
+
+</html>

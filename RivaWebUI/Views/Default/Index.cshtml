@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/UILayout/Index.cshtml";
+}
+
+@await Component.InvokeAsync("_UIFeature")
+@await Html.PartialAsync("~/Views/Rez/Index.cshtml")
+@await Html.PartialAsync("~/Views/UIContact/Index.cshtml")
+@await Html.PartialAsync("~/Views/Login/Index.cshtml")
+@await Html.PartialAsync("~/Views/Register/Index.cshtml")
+
+@await Component.InvokeAsync("_UIAbout")
+
+@await Component.InvokeAsync("_UIGalery")
+
+@await Component.InvokeAsync("_UIDiscount")
+@await Component.InvokeAsync("_UIMenu")
+@await Component.InvokeAsync("_UITestimonial")
+<div id="site-loader" class="show fullscreen"><svg class="circular" width="48px" height="48px"><circle class="path-bg" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke="#eeeeee" /><circle class="path" cx="24" cy="24" r="22" fill="none" stroke-width="4" stroke-miterlimit="10" stroke="#F96D00" /></svg></div>
+
+
+@await Html.PartialAsync("~/Views/SendTestimonial/CreateTestimonial.cshtml")
+
+
+
+

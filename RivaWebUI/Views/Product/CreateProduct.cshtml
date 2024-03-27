@@ -1,0 +1,74 @@
+﻿@model CreateProductDto
+
+@{
+    ViewData["Title"] = "CreateProduct";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-header">
+    <h3 class="page-title">Ürün İşlemleri</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Product/Index/">Ürünler</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Ürün  Oluştur </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+
+                <form method="post" class="forms-sample" enctype="multipart/form-data">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni Ürün Girişi</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="productname">Ürün Adını Giriniz</label>
+                                <input type="text" class="form-control" asp-for="ProductName" id="productname">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="price">Ürün Fiyatını Giriniz</label>
+                                <input type="number" step="any" class="form-control" asp-for="Price" id="price">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="NewImage">Yeni Resim Seç</label>
+                                <input type="file" class="form-control-file" id="image" name="image" onchange="showFileName()">
+                            </div>
+                            <span id="SelectedFileName"></span>
+                        </div>
+
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="price">Ürün Kategorisini Seçiniz</label>
+                                @Html.DropDownListFor(x=>x.CategoryID,(List<SelectListItem>)ViewBag.v,new {@class="form-control"})
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="description">Ürün Açıklamasını Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Description" id="description">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-primary">Ürünü Ekle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showFileName() {
+        var input = document.getElementById('image'); 
+        var output = document.getElementById('SelectedFileName');
+        output.textContent = input.files[0].name;
+    }
+</script>

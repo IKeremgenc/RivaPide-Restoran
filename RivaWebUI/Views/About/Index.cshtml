@@ -1,0 +1,83 @@
+﻿@model List<ResultAboutDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-header">
+	<h3 class="page-title">Hakkımızda</h3>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Hakkımızda</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> Hakkımızda </li>
+		</ol>
+	</nav>
+</div>
+<div class="row">
+	<div class="col-lg-12 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Hakkımızda İşlemlerini Yapabilrisniz </h4>
+		
+				<div class="table-responsive">
+					<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Resim</th>
+									<th scope="col">Başlık</th>
+									<th scope="col">Açıklama</th>
+									<th scope="col">Sil</th>
+									<th scope="col" class="text-center">Güncelle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td><img src="@item.ImageUrl" alt="Hakkımızda Resmi" style="max-width: 100px; max-height: 100px;"></td>
+										<td>@item.Title</td>
+									<td>
+										@if (item.Description.Length > 100)
+										{
+										@item.Description.Substring(0, 100)
+
+									}
+									else
+									{
+										@item.Description
+
+										}
+									</td>
+										<td><button class="btn btn-outline-danger" onclick="confirmDelete(this)" data-aboutid="@item.AboutID">Sil</button>
+										<td>
+										<td><a href="/About/UpdateAbout/@item.AboutID" class="btn btn-outline-success " >Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+						<a href="/About/CreateAbout/" class="btn btn-outline-primary">Yeni Hakkımda Yazısı Girişi</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	function confirmDelete(button) {
+		var aboutId = button.getAttribute('data-aboutid');
+		swal({
+			title: "Emin misiniz?",
+			text: "Bu öğeyi silmek istediğinizden emin misiniz?",
+			icon: "warning",
+			buttons: ["İptal", "Evet"],
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					window.location.href = "/About/DeleteAbout/" + aboutId;
+				}
+			});
+		return false;
+	}
+</script>

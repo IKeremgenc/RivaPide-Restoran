@@ -1,0 +1,53 @@
+﻿@model CreateNotificationDto
+
+@{
+    ViewData["Title"] = "CreateNotification";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-header">
+    <h3 class="page-title">Bildirimler</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Notifications/Index/">Bildirim</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Bildirim  Oluştur </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" class="forms-sample">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni Bildirim Girişi</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="categoryname">Bildirim Türü</label>
+                                <input type="text" class="form-control" asp-for="Type" id="categoryname">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="categoryname">Bildirim İkonu</label>
+                                <input type="text" class="form-control" asp-for="Icon" id="categoryname">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="categoryname">Açıklama</label>
+                                <input type="text" class="form-control" asp-for="Description" id="categoryname">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-primary">Bildirimi Ekle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

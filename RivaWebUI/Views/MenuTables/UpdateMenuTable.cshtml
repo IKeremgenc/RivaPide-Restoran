@@ -1,0 +1,44 @@
+﻿@model UpdateMenuTableDto
+
+@{
+    ViewData["Title"] = "UpdateMenuTable";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+
+<div class="page-header">
+    <h3 class="page-title">Masa İşlemleri</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Product/Index/">Masalar</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Masa  Güncelle </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form method="post" class="forms-sample">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni Masa Girişi</div>
+                        </div>
+                        <div class="card-body">
+                            <input type="hidden" asp-for="MenuTableID" />
+                            <div class="form-group">
+                                <label for="name">Masa Adını Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Name" id="name">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-primary">Masayı Ekle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+

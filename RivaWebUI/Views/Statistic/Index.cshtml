@@ -1,0 +1,141 @@
+﻿@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<script src="~/lib/microsoft/signalr/dist/browser/signalr.min.js"></script>
+
+<div class="content">
+    <div class="container-fluid">
+
+
+        <script type="text/javascript">
+
+            $(document).ready(() => {
+
+                var connection = new signalR.HubConnectionBuilder().withUrl("https://localhost:7186/SignalRHub").build();
+                $("#connstatus").text(connection.state);
+                connection.start().then(() => {
+                    $("#connstatus").text(connection.state);
+                    setInterval(() => {
+                        connection.invoke("SendStatistic");
+                    }, 1000);
+                }).catch((err) => { console.log(err) });
+
+
+                connection.on("ReceiveCategoryCount", (value) => {
+                    $("#categorycount").text(value);
+                }); //2
+
+                connection.on("ReceiveProductCount", (value2) => {
+                    $("#productcount").text(value2);
+                });//3
+
+                connection.on("ReceiveActiveCategoryCount", (value3) => {
+                    $("#activecategorycount").text(value3);
+                });//4
+
+
+
+
+
+                connection.on("ReceiveProductCountByCategoryNameDrink", (value6) => {
+                    $("#receiveproductcountbycategorynamedrink").text(value6);
+                });//5
+
+                connection.on("ReceiveProductPriceAvg", (value7) => {
+                    $("#receiveproductpriceavg").text(value7);
+                });//6
+
+                connection.on("ReceiveProductNameByMaxPrice", (value8) => {
+                    $("#productnamebymaxprice").text(value8);
+                });//8
+
+                connection.on("ReceiveProductNameByMinPrice", (value9) => {
+                    $("#productnamebyminprice").text(value9);
+                }); //1
+
+
+
+            });
+
+        </script>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card stretch-card mb-3">
+                    <div class="card-body d-flex flex-wrap justify-content-between">
+                        <div>
+                            <h4 class="font-weight-semibold mb-1 text-black">Toplam Kategori Sayısı</h4>
+                            <h3 class="text-success font-weight-bold" id="categorycount"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card stretch-card mb-3">
+                    <div class="card-body d-flex flex-wrap justify-content-between">
+                        <div>
+                            <h4 class="font-weight-semibold mb-1 text-black">Toplam Ürün Sayısı</h4>
+                            <h3 class="text-success font-weight-bold" id="productcount"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card stretch-card mb-3">
+                    <div class="card-body d-flex flex-wrap justify-content-between">
+                        <div>
+                            <h4 class="font-weight-semibold mb-1 text-black">Aktif Kategori Sayısı</h4>
+                            <h3 class="text-success font-weight-bold" id="activecategorycount"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card stretch-card mb-3">
+                    <div class="card-body d-flex flex-wrap justify-content-between">
+                        <div>
+                            <h4 class="font-weight-semibold mb-1 text-black">Kategori İsmine Göre Ürün Sayısı (Drink)</h4>
+                            <h3 class="text-success font-weight-bold" id="receiveproductcountbycategorynamedrink"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card stretch-card mb-3">
+                    <div class="card-body d-flex flex-wrap justify-content-between">
+                        <div>
+                            <h4 class="font-weight-semibold mb-1 text-black">Ürün Fiyat Ortalaması</h4>
+                            <h3 class="text-success font-weight-bold" id="receiveproductpriceavg"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card stretch-card mb-3">
+                    <div class="card-body d-flex flex-wrap justify-content-between">
+                        <div>
+                            <h4 class="font-weight-semibold mb-1 text-black">En Yüksek Fiyatlı Ürün İsmi</h4>
+                            <h3 class="text-success font-weight-bold" id="productnamebymaxprice"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+
+
+
+    </div>
+</div>

@@ -1,0 +1,77 @@
+﻿@model List<ResultSliderDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-header">
+	<h3 class="page-title">Ana Sayfa Tablosu</h3>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Hakkımızda</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> Ana Sayfa </li>
+		</ol>
+	</nav>
+</div>
+<div class="row">
+	<div class="col-lg-12 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Ana Sayfa İşlemlerini Yapabilrisniz </h4>
+
+				<div class="table-responsive">
+					<table class="table">
+							<thead>
+								<tr>
+								<th scope="col">Resimth</th>
+								<th scope="col">Başlık 1</th>
+								
+									<th scope="col">Açıklama 1</th>
+									
+									<th scope="col">Sil</th>
+									<th scope="col">Güncelle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+									<td><img src="@item.ImageUrl" alt="Hakkımızda Resmi" style="max-width: 100px; max-height: 100px;"></td>
+										<td>@item.Title1</td>
+									
+										<td>@item.Description1</td>
+									
+									<td><button class="btn btn-outline-danger" onclick="confirmDeleteSlider(this)" data-aboutid="@item.SliderID">Sil</button>
+										<td><a href="/Slider/UpdateSlider/@item.SliderID" class="btn btn-outline-success">Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+					<div class="card-action">
+						<a href="/Slider/CreateSlider/" class="btn btn-outline-primary">Yeni Öne Çıkan Alan Girişi</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	function confirmDeleteSlider(button) {
+		var aboutId = button.getAttribute('data-aboutid');
+		swal({
+			title: "Emin misiniz?",
+			text: "Bu öğeyi silmek istediğinizden emin misiniz?",
+			icon: "warning",
+			buttons: ["İptal", "Evet"],
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					window.location.href = "/Slider/DeleteSlider/" + aboutId;
+				}
+			});
+		return false;
+	}
+</script>

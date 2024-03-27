@@ -1,0 +1,46 @@
+﻿@model CreateTestimonialDto
+@{
+    Layout = null;
+}
+
+
+<section class="client_section layout_padding" id="Yorumlar">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9 col-md-10 mx-auto">
+                <div class="heading_container">
+                    <h2 class="text-lg-center">
+                        Yorum Yap
+                    </h2>
+                </div>
+
+                <form asp-action="CreateTestimonial" asp-controller="SendTestimonial" method="post">
+            
+                    <div class="mb-2">
+                        <label for="Name" class="form-label" style="color:red">İsim</label>
+                        <input type="text" class="form-control" asp-for="Name" placeholder="Adınızı girin">
+                    </div>
+                    <div class="mb-2">
+                        <label for="Comment" class="form-label" style="color:red">Yorum</label>
+                        <textarea class="form-control" asp-for="Comment" rows="3" placeholder="Yorumunuzu buraya girin"></textarea>
+                    </div>
+                    <div class="text-lg-center">
+                        <button type="submit" class="btn btn-danger">Yorum Yap</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+<hr />
+
+<div class="container-fluid">  
+ 
+        <div class="row">
+        <div class=" col-md-12 p-0 m-0">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3192.412920835176!2d28.234661376560254!3d36.8565339722312!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14bfbda7a1588861%3A0xefb1f42799d424ab!2sRiva%20Pide%20%26%20Kebap%20Marmaris!5e0!3m2!1str!2str!4v1711303160060!5m2!1str!2str" width="100%" height="400px" style="border:0;" allowfullscreen="allowfullscreen" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+
+

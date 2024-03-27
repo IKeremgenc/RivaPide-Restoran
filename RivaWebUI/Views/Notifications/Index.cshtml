@@ -1,0 +1,80 @@
+﻿@model List<ResultNotificationDto>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int count = 0;
+}
+<div class="page-header">
+	<h3 class="page-title">Bildirimler Tablosu</h3>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Bildirimle</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> Bildiirmler </li>
+		</ol>
+	</nav>
+</div>
+<div class="row">
+	<div class="col-lg-12 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Bildirimler İşlemlerini Yapabilrisniz </h4>
+				@* 	<p class="card-description">
+				Add class <code>.table</code>
+				</p> *@
+				<div class="table-responsive">
+					<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Açıklama</th>
+									<th scope="col">Tarih</th>
+									<th scope="col">Durum</th>
+									<th scope="col">Sil</th>
+									<th scope="col">Güncelle</th>
+									<th scope="col">Okundu İşaretle</th>
+									<th scope="col">Okunmadı İşaretle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									count++;
+									<tr>
+										<th>@count</th>
+										<td>@item.Description</td>
+										<td>@item.Date</td>
+										<td>@item.Status</td>
+									<td><button class="btn btn-outline-danger" onclick="confirmDeleteNoti(this)" data-aboutid="@item.NotificationID">Sil</button>
+										<td><a href="/Notifications/UpdateNotification/@item.NotificationID" class="btn btn-outline-success">Güncelle</a></td>
+										<td><a href="/Notifications/NotificationStatusChangeToTrue/@item.NotificationID" class="btn btn-outline-warning">Okundu</a></td>
+										<td><a href="/Notifications/NotificationStatusChangeToFalse/@item.NotificationID" class="btn btn-outline-secondary">Okunmadı</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+				@* 		<a href="/Notifications/CreateNotification/" class="btn btn-outline-primary">Yeni Bildirim Girişi</a> *@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	function confirmDeleteNoti(button) {
+		var aboutId = button.getAttribute('data-aboutid');
+		swal({
+			title: "Emin misiniz?",
+			text: "Bu öğeyi silmek istediğinizden emin misiniz?",
+			icon: "warning",
+			buttons: ["İptal", "Evet"],
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					window.location.href = "/Notifications/DeleteNotification/" + aboutId;
+				}
+			});
+		return false;
+	}
+</script>

@@ -1,0 +1,81 @@
+﻿@model List<ResultProductDto>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int count = 0;
+}
+<div class="page-header">
+	<h3 class="page-title">Ürünler İşlemi</h3>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Ürünler</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> Ürünler </li>
+		</ol>
+	</nav>
+</div>
+<div class="row">
+	<div class="col-lg-12 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Ürünler İşlemlerini Yapabilrisniz </h4>
+				@* 	<p class="card-description">
+				Add class <code>.table</code>
+				</p> *@
+				<div class="table-responsive">
+					<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+								<th scope="col">Resim</th>
+								<th scope="col">Ürün Adı</th>
+									<th scope="col">Fiyat</th>
+									<th scope="col">Kategori</th>
+									<th scope="col">Durum</th>
+									<th scope="col">Sil</th>
+								@* 	<th scope="col">Güncelle</th> *@
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									count++;
+									<tr>
+										<th>@count</th>
+									<td><img src="@item.ImageUrl" alt="Hakkımızda Resmi" style="max-width: 200px; max-height: 200px;"></td>
+										<td>@item.ProductName</td>
+										<td>@item.Price</td>
+										<td>@item.CategoryName</td>
+										<td>@item.ProductStatus</td>
+									<td><button class="btn btn-outline-danger" onclick="confirmDeleteProduct(this)" data-aboutid="@item.ProductID">Sil</button>
+								@* 		<td><a href="/Product/UpdateProduct/@item.ProductID" class="btn btn-outline-success">Güncelle</a></td> *@
+									</tr>
+								}
+							</tbody>
+						</table>
+						<a href="/Product/CreateProduct/" class="btn btn-outline-primary">Yeni Ürün Girişi</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	function confirmDeleteProduct(button) {
+		var aboutId = button.getAttribute('data-aboutid');
+		swal({
+			title: "Emin misiniz?",
+			text: "Bu öğeyi silmek istediğinizden emin misiniz?",
+			icon: "warning",
+			buttons: ["İptal", "Evet"],
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					window.location.href = "/Product/DeleteProduct/" + aboutId;
+				}
+			});
+		return false;
+	}
+</script>

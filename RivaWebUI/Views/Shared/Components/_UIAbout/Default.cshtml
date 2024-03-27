@@ -1,0 +1,25 @@
+﻿@model List<ResultAboutDto>
+<section class="site-section" id="hakkimizda">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model)
+            {
+                
+          
+            <div class="col-md-5 site-animate mb-5">
+                    <h4 class="site-sub-title">Riva Pide & Kebap</h4>
+                <h2 class="site-primary-title display-4">Hakkımızda</h2>
+                <p>@item.Title</p>
+
+                <p class="mb-4"> @item.Description</p>
+                    <p><a href="#" class="btn btn-danger btn-lg" data-toggle="modal" data-target="#ContactModal">Bizimle İletişime Geçin!</a></p>
+            </div>
+     
+            <div class="col-md-1"></div>
+            <div class="col-md-6 site-animate img" data-animate-effect="fadeInRight">
+                <img src="@item.ImageUrl" alt="Free Template by colorlib.com" class="img-fluid">
+            </div>
+            }
+        </div>
+    </div>
+</section>

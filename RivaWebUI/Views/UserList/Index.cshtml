@@ -1,0 +1,77 @@
+﻿@model List<Riva.EntityLayer.Entities.AppUser>
+@{
+    ViewData["Title"] = "Kullanıcılar";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+    int Count = 0;
+}
+
+<div class="page-header">
+    <h3 class="page-title">Kullanıcılar</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Kullanıcılar</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Kullanıcılarımız</li>
+        </ol>
+    </nav>
+</div>
+
+<div class="row">
+    <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title">Kullanıcı Listesi</h4>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">#</th>
+                                <th scope="col">Adı</th>
+                                <th scope="col">Soyadı</th>
+                                <th scope="col">E-posta</th>
+                                <th scope="col">Sil</th>
+                          
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach (var user in Model)
+                            {
+                                Count++;
+                                <tr>
+                                    <td>@Count</td>
+                                    <td>@user.Name</td>
+                                    <td>@user.Surname</td>
+                                    <td>@user.Email</td>
+                                    <td>
+                                        <button class="btn btn-outline-danger" onclick="confirmDeleteUser(this)" data-userid="@user.Id">Sil</button>
+                                    </td>
+                               
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+              
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+    function confirmDeleteUser(button) {
+        var userId = button.getAttribute('data-userid');
+        swal({
+            title: "Emin misiniz?",
+            text: "Silmek istediğinize emin misiniz? Geri dönüşü yoktur.",
+            icon: "warning",
+            buttons: ["İptal", "Evet"],
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location.href = "/UserList/DeleteUser/" + userId;
+                }
+            });
+        return false;
+    }
+</script>

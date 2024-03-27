@@ -1,0 +1,75 @@
+﻿@model List<ResultContactDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-header">
+	<h3 class="page-title">Basic Tables</h3>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Tables</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> Basic tables </li>
+		</ol>
+	</nav>
+</div>
+<div class="row">
+	<div class="col-lg-12 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Basic Table</h4>
+				<p class="card-description">
+					Add class <code>.table</code>
+				</p>
+				<div class="table-responsive">
+						<table class="table mt-3">
+							<thead>
+								<tr>
+									<th scope="col">Konum</th>
+									<th scope="col">Telefon</th>
+									<th scope="col">Mail</th>
+									<th scope="col">Açıklama</th>
+									<th scope="col">Sil</th>
+									<th scope="col">Güncelle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td>@item.Location</td>
+										<td>@item.Phone</td>
+										<td>@item.Mail</td>
+										<td>@item.FooterDescription</td>
+									<td><button class="btn btn-outline-danger" onclick="confirmDeleteCon(this)" data-aboutid="@item.ContactID">Sil</button>
+										<td><a href="/Contact/UpdateContact/@item.ContactID" class="btn btn-outline-success">Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+						<a href="/Contact/CreateContact/" class="btn btn-outline-primary">Yeni İletişim Yazısı Girişi</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	function confirmDeleteCon(button) {
+		var aboutId = button.getAttribute('data-aboutid');
+		swal({
+			title: "Emin misiniz?",
+			text: "Bu öğeyi silmek istediğinizden emin misiniz?",
+			icon: "warning",
+			buttons: ["İptal", "Evet"],
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					window.location.href = "/About/DeleteAbout/" + aboutId;
+				}
+			});
+		return false;
+	}
+</script>

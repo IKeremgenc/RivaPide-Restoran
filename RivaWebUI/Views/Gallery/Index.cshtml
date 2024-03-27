@@ -1,0 +1,71 @@
+﻿@model List<ResultGallery>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-header">
+	<h3 class="page-title">Resimler Alanı</h3>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Resimler</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> Resimler </li>
+		</ol>
+	</nav>
+</div>
+<div class="row">
+	<div class="col-lg-12 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Resimler İşlemlerini Yapabilrisniz </h4>
+				@* 	<p class="card-description">
+				Add class <code>.table</code>
+				</p> *@
+				<div class="table-responsive">
+					<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">Resim</th>
+									
+									<th scope="col">Sil</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									<tr>
+										<td><img src="@item.Galerry" alt="Hakkımızda Resmi" style="max-width: 200px; max-height: 200px;"></td>
+
+									<td><button class="btn btn-outline-danger" onclick="confirmDeleteGallery(this)" data-aboutid="@item.GalleryID">Sil</button>
+										<td>
+									
+									</tr>
+								}
+							</tbody>
+						</table>
+					</div>
+					<hr />
+				<a href="/Gallery/CreateAbout/" class="btn btn-outline-primary">Yeni Resim Girişi</a>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	function confirmDeleteGallery(button) {
+		var aboutId = button.getAttribute('data-aboutid');
+		swal({
+			title: "Emin misiniz?",
+			text: "Bu öğeyi silmek istediğinizden emin misiniz?",
+			icon: "warning",
+			buttons: ["İptal", "Evet"],
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					window.location.href = "/Gallery/DeleteAbout/" + aboutId;
+				}
+			});
+		return false;
+	}
+</script>

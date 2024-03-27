@@ -1,0 +1,35 @@
+﻿@model List<ResultGallery>
+
+<style>
+    .vg {
+        width: 100%;
+        height: 100%;
+    }
+
+</style>
+<section class="site-section" id="Resimler">
+    <div class="container">
+        <div class="row site-custom-gutters">
+
+            <div class="col-md-12 text-center mb-5 site-animate">
+                <h2 class="display-4">Resimler</h2>
+                <div class="row justify-content-center">
+                    <div class="col-md-7">
+                        <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                    </div>
+                </div>
+            </div>
+            @foreach (var item in Model)
+            {
+
+
+                <div class="col-md-4 site-animate  ">
+                    <a href="@item.Galerry" class="site-thumbnail image-popup vg">
+                        <img src="@item.Galerry" alt="Pide" class="img-fluid vg">
+                    </a>
+                </div>
+            }
+
+        </div>
+    </div>
+</section>

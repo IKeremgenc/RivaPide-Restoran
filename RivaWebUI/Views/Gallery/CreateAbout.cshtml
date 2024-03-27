@@ -1,0 +1,87 @@
+﻿@model CreateGallery
+@{
+    ViewData["Title"] = "CreateAbout";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+<div class="page-header">
+    <h3 class="page-title">Resim İşlemleri</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/Gallery/Index/">Resimler</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Resim Girişi </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+           
+                <form method="post" enctype="multipart/form-data" class="forms-sample">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni Resim  Girişi</div>
+                        </div>
+                    
+                    
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Image">Resim Seç</label>
+                                <input type="file" class="form-control-file" id="Image" name="image" onchange="showFileName(this)">
+
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-primary">Yeni Resim  Ekle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    function showFileName(input) {
+        var fileName = input.value.split('\\').pop();
+        var label = input.parentElement.nextElementSibling;
+        label.innerText = fileName;
+    }
+</script>
+<script>
+    function showFileName(input) {
+        var fileName = input.value.split('\\').pop();
+        var label = input.parentElement.nextElementSibling;
+        label.innerText = fileName;
+    }
+
+    // Toastr mesajını gösteren fonksiyon
+    function showToast(message, type) {
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000"
+        };
+        toastr[type](message);
+    }
+
+    // Form submit olduğunda toastr mesajını göster
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Sayfa yenilemesini önle
+            showToast("Hakkımda yazısı başarıyla oluşturuldu.", "success");
+            this.submit(); // Formu gönder
+        });
+    });
+</script>
+
+

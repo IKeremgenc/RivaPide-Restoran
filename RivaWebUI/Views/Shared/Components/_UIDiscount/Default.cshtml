@@ -1,0 +1,47 @@
+﻿@model List<ResultDiscountDto>
+<style> 
+.custom-image {
+    width: 100%; 
+    height: auto; 
+}
+</style>
+<section class="site-section bg-light" id="indirimler">
+    <div class="container">
+
+        <div class="row">
+            <div class="col-md-12 text-center mb-5 site-animate">
+                <h4 class="site-sub-title">İndirimler😍</h4>
+                <h2 class="display-4">Riva Pide & Kebap</h2>
+                <div class="row justify-content-center">
+            
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="owl-carousel site-owl">
+                    @foreach (var item in Model)
+                    {
+                        @if (item.Status)
+                        {
+                            <div class="item">
+                                <div class="media d-block mb-4 text-center site-media site-animate border-0">
+                                    <img src="@item.ImageUrl" alt="Marmaris" class="img-fluid custom-image">
+                                    <div class="media-body p-md-5 p-4">
+                                        <h8 class="mt-0 h4">@item.Title</h8>
+                                        <hr />
+                                        <p class="mb-4">@item.Description</p>
+                                        <p class="mb-0"><a href="#">@item.Amount ₺</a></p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        }
+                    }
+                
+                
+
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>

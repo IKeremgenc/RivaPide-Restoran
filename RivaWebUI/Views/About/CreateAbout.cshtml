@@ -1,0 +1,103 @@
+﻿@model CreateAboutDto
+
+@{
+    ViewData["Title"] = "CreateAbout";
+    Layout = "~/Views/AdminLayout/Index.cshtml";
+}
+
+<div class="page-header">
+    <h3 class="page-title">Hakkımızda İşlemleri</h3>
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="/About/Index/">Hakkımızda</a></li>
+            <li class="breadcrumb-item active" aria-current="page"> Hakkımızda Alanı Oluştur </li>
+        </ol>
+    </nav>
+</div>
+<div class="row">
+    <div class="col-md-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+               
+                <form method="post" enctype="multipart/form-data" class="forms-sample">
+
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Yeni Hakkımızda Yazı Girişi</div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Title">Başlığı Giriniz</label>
+                                <input type="text" class="form-control" asp-for="Title" id="Title">
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="Description">Açıklamayı Giriniz</label>
+                                <textarea rows="5" class="form-control" asp-for="Description" id="Description"></textarea>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="form-group">
+                                <label for="NewImage">Yeni Resim Seç</label>
+                                <input type="file" class="form-control-file" id="NewImage" name="NewImage" onchange="showFileName()">
+                            </div>
+
+                        </div>
+                        <div class="card-body">
+                            <button class="btn btn-primary">Hakkımda Yazısını Ekle</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<script>
+    function showFileName() {
+        var input = document.getElementById('NewImage');
+        var output = document.getElementById('SelectedFileName');
+        output.textContent = input.files[0].name;
+    }
+</script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css">
+
+<!-- Toastr JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+<script>
+    function showFileName(input) {
+        var fileName = input.value.split('\\').pop();
+        var label = input.parentElement.nextElementSibling;
+        label.innerText = fileName;
+    }
+</script>
+<script>
+    function showFileName(input) {
+        var fileName = input.value.split('\\').pop();
+        var label = input.parentElement.nextElementSibling;
+        label.innerText = fileName;
+    }
+
+    // Toastr mesajını gösteren fonksiyon
+    function showToast(message, type) {
+        toastr.options = {
+            "closeButton": true,
+            "progressBar": true,
+            "positionClass": "toast-top-right",
+            "showDuration": "300",
+            "hideDuration": "1000",
+            "timeOut": "5000",
+            "extendedTimeOut": "1000"
+        };
+        toastr[type](message);
+    }
+
+    // Form submit olduğunda toastr mesajını göster
+    document.addEventListener('DOMContentLoaded', function () {
+        document.querySelector('form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Sayfa yenilemesini önle
+            showToast("Hakkımda yazısı başarıyla oluşturuldu.", "success");
+            this.submit(); // Formu gönder
+        });
+    });
+</script>

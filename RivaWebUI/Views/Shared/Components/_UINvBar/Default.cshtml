@@ -1,0 +1,42 @@
+﻿<nav class="navbar navbar-expand-lg navbar-dark site_navbar bg-dark site-navbar-light" id="site-navbar">
+    <div class="container">
+
+        <a class="navbar-brand" href="#Home">Riva Pide & Kebap</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#site-nav" aria-controls="site-nav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="oi oi-menu"></span> Menu
+        </button>
+        <div class="collapse navbar-collapse" id="site-nav">
+            <ul class="navbar-nav ml-auto">
+            
+                <li class="nav-item"><a href="#hakkimizda" class="nav-link">Hakkımızda</a></li>
+                <li class="nav-item"><a href="#Resimler" class="nav-link">Resimler</a></li>
+                <li class="nav-item"><a href="#indirimler" class="nav-link">İndirimler</a></li>
+                <li class="nav-item"><a href="#Menu" class="nav-link">Menu</a></li>
+                <li class="nav-item"><a href="#Yorumlar" class="nav-link">Yorumlar</a></li>
+              
+
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Diğer İşlemler
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reservationLogin">Girş Yap</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reservationRegister">Kayıt Ol</a>
+                        <a class="dropdown-item" href="#" data-toggle="modal" data-target="#reservationModal">Rezervasyon Yap</a>
+                        <a class="dropdown-item" href="/Login/LogOut/">Çıkış Yap</a>
+                    </div>
+                </li>
+
+            </ul>
+        </div>
+
+     
+    </div>
+</nav>
+<script>
+    $(document).ready(function () {
+        setTimeout(function () {
+            $(".alert").fadeOut();
+        }, 2000);
+    });
+</script>

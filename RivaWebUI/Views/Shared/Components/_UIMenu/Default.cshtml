@@ -1,0 +1,113 @@
+﻿@model List<ResultProductDto>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riva Menü</title>
+    <style>
+        .card {
+            width: 100%;
+            height: 400px;
+            margin-bottom: 10px;
+        }
+
+            .card img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+            }
+
+        .nav {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <section class="site-section" id="Menu">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12 text-center mb-5 site-animate">
+                    <h2 class="display-4">Riva Menü</h2>
+                    <div class="row justify-content-center">
+                        <div class="col-md-7">
+                            <p class="lead">Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                        </div>
+                    </div>
+
+                    <div class="row justify-content-center mb-5">
+                        <ul class="nav site-tab-nav nav-pills" id="pills-tab" role="tablist">
+                            <li class="nav-item site-animate">
+                                <a class="nav-link active" id="pills-lunch-tab" href="#pills-lunch" role="tab" aria-controls="pills-lunch" aria-selected="false" data-toggle="modal" data-target="#reservationModal">Rezervasyon Yap!</a>
+                            </li>
+                            <li class="nav-item site-animate">
+                                <a class="nav-link active" id="pills-dinner-tab" href="#pills-dinner" role="tab" aria-controls="pills-dinner" aria-selected="false" data-toggle="modal" data-target="#ContactModal">İletişime Geç</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                @for (int i = 0; i < Math.Min(3, Model.Count); i++)
+                {
+                    var item = Model[i];
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img src="@item.ImageUrl" alt="products" />
+                            <div class="card-body">
+                                <h5 class="card-title">@item.ProductName</h5>
+                                <p class="card-text">@item.Description</p>
+                                <a href="#" data-toggle="modal" data-target="#reservationModal">@item.Price ₺</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+            <div id="moreProducts" class="row d-none">
+                @for (int i = 3; i < Model.Count; i++)
+                {
+                    var item = Model[i];
+                    <div class="col-sm-4">
+                        <div class="card">
+                            <img src="@item.ImageUrl" alt="products" />
+                            <div class="card-body">
+                                <h5 class="card-title">@item.ProductName</h5>
+                                <p class="card-text">@item.Description</p>
+                                <a href="#" data-toggle="modal" data-target="#reservationModal">@item.Price ₺</a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+
+            <div class="text-center">
+                <button id="showMoreBtn" class="btn btn-danger">Daha Fazla Ürün Görüntüle</button>
+                <button id="hideMoreBtn" class="btn btn-secondary d-none">Daha Az Ürün Görüntüle</button>
+            </div>
+
+        </div>
+    </section>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+        $(document).ready(function () {
+         
+         
+
+            $("#showMoreBtn").click(function () {
+                $("#moreProducts").toggleClass("d-none");
+                $(this).hide();
+                $("#hideMoreBtn").show();
+            });
+
+            $("#hideMoreBtn").click(function () {
+                $("#moreProducts").toggleClass("d-none");
+                $(this).hide();
+                $("#showMoreBtn").show();
+            });
+        });
+    </script>
+
+
+</body>
+</html>

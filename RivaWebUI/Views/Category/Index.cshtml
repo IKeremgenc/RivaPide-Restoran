@@ -1,0 +1,75 @@
+﻿@model List<ResultCategoryDto>
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int count = 0;
+}
+
+<div class="page-header">
+	<h3 class="page-title">Basic Tables</h3>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="#">Hakkımızda</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> Kategoriler </li>
+		</ol>
+	</nav>
+</div>
+<div class="row">
+	<div class="col-lg-12 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Kategoriler İşlemlerini Yapabilrisniz </h4>
+				@* 	<p class="card-description">
+				Add class <code>.table</code>
+				</p> *@
+				<div class="table-responsive">
+					<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+									<th scope="col">Kategori Adı</th>
+									<th scope="col">Durum</th>
+									<th scope="col">Sil</th>
+								@* 	<th scope="col">Güncelle</th> *@
+								</tr>
+							</thead>
+							<tbody>
+								@foreach(var item in Model)
+								{
+									count++;
+									<tr>
+										<th>@count</th>
+										<td>@item.CategoryName</td>
+										<td>@item.Status</td>
+									<td><button class="btn btn-outline-danger" onclick="confirmDeleteCate(this)" data-aboutid="@item.CategoryID">Sil</button>
+									@* 	<td><a href="/Category/UpdateCategory/@item.CategoryID" class="btn btn-outline-success">Güncelle</a></td> *@
+									</tr>
+								}
+							</tbody>
+						</table>
+					@* 	<a href="/Category/CreateCategory/" class="btn btn-outline-primary">Yeni Kategori Girişi</a> *@
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	function confirmDeleteCate(button) {
+		var aboutId = button.getAttribute('data-aboutid');
+		swal({
+			title: "Emin misiniz?",
+			text: "Bu öğeyi silmek istediğinizden emin misiniz?",
+			icon: "warning",
+			buttons: ["İptal", "Evet"],
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					window.location.href = "/Category/DeleteCategory/" + aboutId;
+				}
+			});
+		return false;
+	}
+</script>

@@ -1,0 +1,92 @@
+﻿@model List<ResultMenuTableDto>
+
+@{
+	ViewData["Title"] = "Index";
+	Layout = "~/Views/AdminLayout/Index.cshtml";
+	int count = 0;
+}
+
+
+<div class="page-header">
+	<h3 class="page-title">Masalar </h3>
+	<nav aria-label="breadcrumb">
+		<ol class="breadcrumb">
+			<li class="breadcrumb-item"><a href="/MenuTables/Index/">Masalar</a></li>
+			<li class="breadcrumb-item active" aria-current="page"> Masalar </li>
+		</ol>
+	</nav>
+</div>
+<div class="row">
+	<div class="col-lg-12 grid-margin stretch-card">
+		<div class="card">
+			<div class="card-body">
+				<h4 class="card-title">Masalar İşlemlerini Yapabilrisniz </h4>
+				@* 	<p class="card-description">
+				Add class <code>.table</code>
+				</p> *@
+				<div class="table-responsive">
+					<table class="table">
+							<thead>
+								<tr>
+									<th scope="col">#</th>
+								<th scope="col">Masa Adı</th>
+								<th scope="col"> Masa Durum</th>
+								<th scope="col">Masayı Boş Yap</th>
+								<th scope="col">Masayı Dolu Yap</th>
+									<th scope="col">Sil</th>
+									<th scope="col">Güncelle</th>
+								</tr>
+							</thead>
+							<tbody>
+								@foreach (var item in Model)
+								{
+									count++;
+									<tr>
+										<th>@count</th>
+									<td>@item.Name</td>
+									<td>
+										@if (item.Status)
+										{
+											<span style="color: green;">Masa Boş</span>
+										}
+										else
+										{
+											<span style="color: red;">Masa Dolu</span>
+										}
+
+
+									</td>
+									<td><a href="/MenuTables/MenuTableStatusFalseApproved/@item.MenuTableID" class="btn btn-warning">Masayı Dolu İşaretle</a></td>
+									<td><a href="/MenuTables/MenuTableStatusApproved/@item.MenuTableID" class="btn btn-primary">Masayı Boş İşaretle</a></td>
+									<td><button class="btn btn-danger" onclick="confirmDeleteMenu(this)" data-aboutid="@item.MenuTableID">Sil</button>
+										<td><a href="/MenuTables/UpdateMenuTable/@item.MenuTableID" class="btn btn-success">Güncelle</a></td>
+									</tr>
+								}
+							</tbody>
+						</table>
+						<a href="/MenuTables/CreateMenuTable/" class="btn btn-outline-primary">Yeni Kategori Girişi</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script>
+	function confirmDeleteMenu(button) {
+		var aboutId = button.getAttribute('data-aboutid');
+		swal({
+			title: "Emin misiniz?",
+			text: "Bu öğeyi silmek istediğinizden emin misiniz?",
+			icon: "warning",
+			buttons: ["İptal", "Evet"],
+			dangerMode: true,
+		})
+			.then((willDelete) => {
+				if (willDelete) {
+					window.location.href = "/MenuTables/DeleteMenuTable/" + aboutId;
+				}
+			});
+		return false;
+	}
+</script>
